@@ -1,0 +1,51 @@
+student-dashboard/
+├── src/
+│   ├── pages/
+│   │   ├── api/
+│   │   │   └── appwrite.js
+│   │   ├── _app.js
+│   │   ├── _document.js
+│   │   ├── index.js
+│   │   ├── dashboard.js
+│   │   ├── profile.js
+│   │   ├── search.js
+│   │   ├── login.js
+│   │   └── signup.js
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Header.js
+│   │   │   ├── Footer.js
+│   │   │   └── Layout.js
+│   │   ├── dashboard/
+│   │   │   ├── OverviewPanel.js
+│   │   │   ├── AchievementTracker.js
+│   │   │   └── ProjectsPortfolio.js
+│   │   ├── profile/
+│   │   │   ├── PersonalInfo.js
+│   │   │   ├── EducationData.js
+│   │   │   ├── Achievements.js
+│   │   │   ├── ExtracurricularActivities.js
+│   │   │   └── Skills.js
+│   │   └── ui/
+│   │       ├── Button.js
+│   │       ├── Card.js
+│   │       ├── Input.js
+│   │       └── Modal.js
+│   ├── lib/
+│   │   └── appwrite.js
+│   ├── styles/
+│   │   └── globals.css
+│   ├── config/
+│   │   └── appwrite.js
+│   ├── hooks/
+│   │   └── useAuth.js
+│   ├── context/
+│   │   └── AuthContext.js
+│   └── utils/
+│       └── helpers.js
+├── public/
+│   └── images/
+├── .env.local
+├── tailwind.config.js
+├── next.config.js
+└── package.json
