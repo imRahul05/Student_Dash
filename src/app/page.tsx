@@ -1,11 +1,13 @@
+'use client'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { GraduationCap, BookOpen, Calendar, Users } from "lucide-react"
 import { ReactNode } from 'react'
 import { FloatingNav } from '../components/ui/floating-navbar' // Corrected import path
-import { GoogleGeminiEffect } from '../components/ui/google-gemini-effect' // Import GoogleGeminiEffect
-import { useMotionValue } from 'framer-motion' // Correct import for useMotionValue
+import { useMotionValue, useScroll, useTransform } from 'framer-motion' // Correct import for useMotionValue
+import { GoogleGeminiEffect } from '@/components/ui/google-gemini-effect'
+import React from 'react'
 
 export default function HomePage() {
   // Define navigation items
@@ -14,15 +16,6 @@ export default function HomePage() {
     { name: 'Courses', link: '/courses', icon: <BookOpen className="h-6 w-6" /> },
     { name: 'Calendar', link: '/calendar', icon: <Calendar className="h-6 w-6" /> },
     { name: 'Resources', link: '/resources', icon: <Users className="h-6 w-6" /> },
-  ];
-
-  // Create motion values for path lengths
-  const pathLengths = [
-    useMotionValue(0),
-    useMotionValue(0),
-    useMotionValue(0),
-    useMotionValue(0),
-    useMotionValue(0),
   ];
 
   return (
@@ -50,9 +43,40 @@ export default function HomePage() {
           <FeatureCard icon={<Users className="h-8 w-8 text-purple-400" />} title="Collaboration Tools" description="Connect with peers and work on group projects seamlessly" />
         </div>
       </main>
-      <GoogleGeminiEffect pathLengths={pathLengths} /> {/* Add GoogleGeminiEffect at the bottom */}
+      <GoogleGeminiEffectDemo /> {/* Include GoogleGeminiEffectDemo */}
     </div>
   )
+}
+
+function GoogleGeminiEffectDemo() {
+  const ref = React.useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
+  const pathLengthSecond = useTransform(scrollYProgress, [0, 0.8], [0.15, 1.2]);
+  const pathLengthThird = useTransform(scrollYProgress, [0, 0.8], [0.1, 1.2]);
+  const pathLengthFourth = useTransform(scrollYProgress, [0, 0.8], [0.05, 1.2]);
+  const pathLengthFifth = useTransform(scrollYProgress, [0, 0.8], [0, 1.2]);
+
+  return (
+    <div
+      className="h-[400vh] bg-black w-full dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
+      ref={ref}
+    >
+      <GoogleGeminiEffect
+        pathLengths={[
+          pathLengthFirst,
+          pathLengthSecond,
+          pathLengthThird,
+          pathLengthFourth,
+          pathLengthFifth,
+        ]}
+      />
+    </div>
+  );
 }
 
 interface NavLinkProps {
